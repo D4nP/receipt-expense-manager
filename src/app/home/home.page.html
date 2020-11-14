@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="header-title">
+      Home
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToAddReceiptPage()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-list>
+      <ion-item class="text-center" *ngIf="totalAmount > 0">
+        <ion-label>Total Claimed Amount: £ {{totalAmount}}</ion-label>
+      </ion-item>
+      <ion-item *ngFor="let receipt of receiptData">
+        <ion-avatar slot="start">
+          <img [src]="getImage(receipt.receipt_image)" (click)="imageView(receipt.receipt_image)"/>
+        </ion-avatar>
+        <ion-label>
+          <p class="details">Receipt Name: {{receipt.receipt_name}}</p>
+          <p class="details">Claimed Amount: £ {{receipt.claimed_amount}}</p>
+          <p class="details">Captured Time: {{getTime(receipt.image_timeStamp)}}</p>
+        </ion-label>
+        <ion-icon class="trash-icon" name="trash" (click)="removeReceiptAlert(receipt.id)"></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="receiptData.length == 0">
+        <ion-label> No Data Found </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

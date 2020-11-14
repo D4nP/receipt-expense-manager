@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="header-title">Add Receipt</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div>
+    <div class="text-center">
+      <ion-button (click)="takePicture()">Capture image</ion-button>
+    </div>
+    
+    <!-- *ngIf="imageUrl" -->
+    <div *ngIf="imageUrl">
+      <div class="text-center image_upload_div">
+        <img [src]="imageUrl" class="captured-image" />
+        <ion-icon name="close" class="cross-icon" (click)="removeimage()"></ion-icon>
+      </div>
+    </div>
+    <div>
+      <ion-item>
+        <ion-label position="floating">Receipt Name</ion-label>
+        <ion-input type="text" placeholder="Receipt Name" [(ngModel)]="receiptName"></ion-input>
+      </ion-item>
+    </div>
+    <div>
+      <ion-item>
+        <ion-label position="floating">Claimed Money(£)</ion-label>
+        <ion-input type="number" placeholder="How much money claimed?" [(ngModel)]="claimedAmount"></ion-input>
+      </ion-item>
+    </div>
+
+    <div>
+      <div class="text-center">
+        <ion-button (click)="save()">Save</ion-button>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
